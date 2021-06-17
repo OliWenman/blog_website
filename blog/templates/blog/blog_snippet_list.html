@@ -1,0 +1,54 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+
+<style type="text/css">
+
+
+</style>
+
+<section class="article-wrapper">
+	{% for blog_snippet in blog_snippet_list %}
+
+		<article class="article-card">
+
+			<div class="image-container">
+				<a href="{% url 'blog:blog_entry' name=blog_snippet.get_absolute_url %}" style="">
+					{{blog_snippet.display_thumbnail}}
+				</a>
+			</div>
+			
+			<div  class="text-container">
+
+				<li class="categories-container" style="">
+
+					{% for category in blog_snippet.category.all %}
+
+						<ul class="categories"style="">
+							{{category.name}}
+						</ul>
+
+					{% endfor %}
+
+				</li>
+
+				<h2 class="heading">{{blog_snippet.title}}</h2>
+
+				<p class="date">
+					{{blog_snippet.created_at|date:"SHORT_DATE_FORMAT" }}
+				</p>
+
+				<p class="text">
+					{{blog_snippet.peak_text}}
+				</p>
+
+				<div class="" style="width: 100%;">
+					<a href="{% url 'blog:blog_entry' name=blog_snippet.get_absolute_url %}" class="continue-reading-button" style="">
+						Continue reading
+					</a>
+				</div>
+
+			</div>
+		</article>
+
+	{% endfor %}
+</article>

@@ -1,0 +1,145 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+	<main class="main-text">
+
+		<style type="text/css">
+
+			.contact-form textarea {
+				width: 100%;
+				max-width: 650px;
+				padding-right: 10px;
+				border-radius: 7px;
+				border: 1px solid #cccccc;
+
+				-webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+				-moz-box-sizing: border-box; /* FF1+ */
+				box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+			}
+
+			.contact-form input {
+    			width: 100%;
+    			max-width: 250px;
+    			border-radius: 7px;
+    			border: 1px solid #cccccc;
+
+    			-webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+				-moz-box-sizing: border-box; /* FF1+ */
+				box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+			}
+
+			.contact-form .error {
+				border: 1px solid red;
+			}
+			
+			.contact-form {
+				margin-top: 50px;
+				margin-bottom: 50px;
+				margin-left: 0px;
+			}
+
+			.contact-form table {
+				width:100%;
+			}
+
+			.contact-form tr {
+				width: 100%;
+			}
+
+			.contact-form td:first-child {
+				max-width: 100%;
+				padding-right: 0; 
+			}
+
+			.contact-form td {
+				vertical-align: top; 
+				float: left;
+				width: 100%;
+				padding-bottom: 0px;
+
+			}
+
+			.contact-form td:last-child {
+				padding-bottom: 30px;
+			}
+
+			@media (min-width: 700px) {
+				
+				.contact-form {
+					margin-left: 40px;
+				}
+
+				.contact-form td {
+					float: none;
+					width: auto;
+					padding-right: 60px;
+					padding-bottom: 30px;
+				}
+
+				.contact-form td:first-child {
+					width: 140px;
+				}
+			}
+
+		</style>
+
+		<h1>Contact</h1>
+
+		<p>
+			If you have a question, query, or want to provide me feedback about the website or a post I've made please don't hesitate to contact me with the form below.
+		</p>
+
+		{% if messages %}
+
+			{% for message in messages %}
+				<div style="border-top: 2px solid green; border-bottom: 2px solid green; opacity: 60%; margin-bottom: 40px;">
+					Message recieved from: {{message}} &#10004;
+				</div>
+			{% endfor %}
+
+			<p>
+				Thank you for your message, I will try to reply shortly. <a href="{% url 'home:home' %}">Click here</a> to return home.
+			</p>
+		{% endif %}
+
+		{% if not messages %}
+		<form class="contact-form" enctype="multipart/form-data" method = "POST" id="inputform" onsubmit="checkform(this); " onkeypress="enterpressalert(event, this)">
+			{% csrf_token %}
+
+			<table>
+				{% for contact in contactform %}
+
+					<tr>
+						<td style="">
+							
+							{{contact.label_tag}}
+
+							{% if contact.errors|striptags %}
+								<font color="red">{{contact.errors.as_text}}</font>
+							{% endif %}
+
+						</td>
+
+						<td>
+							{{contact}}
+						</td>
+					</tr>
+
+				{% endfor %}
+
+			</table>
+
+			{% if not message_recieved %}
+				<button class="button" type="submit" name = "submit" id = "submit">Submit</button>
+			{% endif %}
+
+		</form>
+		{% endif %}
+
+	</main>
+
+	<script type="text/javascript">
+
+	</script>
+	
+{% endblock %}

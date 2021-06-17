@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oli's Outlook</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+
+    <!-- Import JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- highlight.js-->
+    <link rel="stylesheet" 
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- highlight.js -->
+
+</head>
+
+<body>
+
+    <nav class="nav-container"> 
+
+        <div style="" class="nav-bar">
+
+            <div class="nav-button" id="nav-button" style=" ">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+
+            <div style="" class="logo">
+               <b style="">Oli's Outlook</b>
+            </div>
+
+        </div>
+
+        <ul id="nav-menu">
+          <li><a href="{% url 'home:home' %}">Home</a></li>
+          <li><a href="{% url 'blog:entry_list_page' current_page=1 %}">Explore</a></li>
+          <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+          <li><a href="{% url 'portfolio:portfolio' %}">About</a></li>
+        </ul>
+
+         <span class="clear"></span>
+    </nav>
+
+     <div style="clear: all;"></div>
+
+    <script type="text/javascript">
+
+        //Function to monitor the window resize to know when to hide the nav at a certain width
+        function onWindowResize() {
+            var w = window.innerWidth
+            var navbar = document.getElementById("nav-button");
+            var nav_menu = document.getElementById("nav-menu");
+
+            if (w > 700) {
+                //navbar.style.display = "none";
+                //nav_menu.style.display = "block";
+            }
+            else {
+                //navbar.style.display = "block";
+                //nav_menu.style.display = "none";
+            }
+        }
+        
+        onWindowResize();
+        window.addEventListener("resize", onWindowResize);
+
+        $( "#nav-button" ).click(function() {
+
+            var navbar = document.getElementById("nav-button");
+            navbar.classList.toggle("change");
+
+            $( "#nav-menu" ).toggle( "slow", function() {
+                // Animation complete.
+          });
+        });
+    </script>
+
+    {% block content %}
+    {% endblock %}
+</body>

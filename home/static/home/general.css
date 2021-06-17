@@ -1,0 +1,202 @@
+* {
+
+	--default-b-colour:      #dedede;
+	--highlight-b-colour:    #b3b3b3;
+	--current-b-colour:      #799fec;
+
+	--default-text-colour:   black;
+	--highlight-text-colour: white;
+	--current-text-colour:   white;
+
+	--nav-size: 7px;
+	--nav-line-height: 32px;
+
+	font-family: Verdana;
+}
+
+ul.navbar {
+	width:100%;
+	padding: 0;
+	margin: 0;
+	z-index: 100;
+}
+
+li.navbar-option {
+
+	float:left;
+	width: 25%;
+	list-style: none;
+	text-align: center;
+	z-index: 100;
+	margin: 0;
+}
+
+li.navbar-option:last-child {
+	border-right:none;
+
+}
+
+li.navbar-option a {
+	display: block;
+	width:100%;
+	background: var(--default-b-colour);
+	color: var(--default-text-colour);
+	font-size: 16px;
+	text-decoration: none;
+	border-right:none;
+	z-index: 100;
+
+	padding-top: var(--nav-size);
+	padding-bottom: var(--nav-size);
+
+	line-height: var(--nav-line-height);
+	border-bottom: 3px solid #d9d9d9;
+}
+
+li.navbar-option a:visited {
+	color:var(--default-text-colour);
+}
+
+@keyframes example {
+  from {
+  	background: var(--default-b-colour);
+	color: var(--default-text-colour);
+  }
+  to {
+  	background-color: var(--highlight-b-colour);
+  	color: var(--highlight-text-colour);
+  }
+}
+
+@keyframes exampletwo {
+  from {
+  	background-color: var(--current-b-colour);
+  	color: var(--current-text-colour);
+  }
+  to {
+  	background-color: var(--current-b-colour);
+  	color: var(--current-text-colour);
+  }
+}
+
+/* Change the color of links on hover */
+li.navbar-option a:hover {
+	background-color: var(--highlight-b-colour);
+	color: var(--highlight-text-colour);
+	animation-name: example;
+  	animation-duration: 0.6s;
+}
+
+
+/* Add a color to the active/current link */
+li.navbar-option a.active {
+	background-color: var(--current-b-colour);
+	color: var(--current-text-colour);
+
+	animation-duration: 0.6s;
+	animation-name: exampletwo;
+
+	border-bottom: 3px solid #b3ccff;
+}
+
+/* Add a color to the active/current link */
+li.navbar-option a.active:hover {
+
+}
+
+@media screen and (max-width: 769px) {
+	#menu {
+		width:1.4em;
+		display: block;
+		background:#ddd;
+		font-size:1.35em;
+		text-align: center;
+		width: 100%;
+		padding-top: var(--nav-size);		
+		padding-bottom: var(--nav-size);
+		cursor: pointer;
+		line-height: var(--nav-line-height);
+		border-bottom: 3px solid #d9d9d9;
+	}
+
+	#menu:hover {
+		background-color: var(--highlight-b-colour);
+		color: var(--highlight-text-colour);
+
+		animation-name: example;
+  		animation-duration: 0.4s;
+	}
+
+	#navbar.js {
+		display: none;
+	}
+
+	ul.navbar {
+		width:100%;
+
+		position: relative;
+	}
+
+	li.navbar-option {
+		width:100%;
+		float: none;
+		position: relative;
+		animation-duration: 0.5s;
+  		animation-name: cascade;
+	}
+
+	@keyframes cascade {
+		from {
+			height: 0;
+  		}
+
+		to {
+			height: calc(var(--nav-line-height) * 1.5) ;
+		}
+	}
+
+}
+
+@media screen and (min-width: 769px) {
+	#menu {
+		display: none;
+	}
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+/*============================================================================================================*/
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: grey;
+  color: #fff;
+  text-align: center;
+  border-radius: 0px 0px 10px 10px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

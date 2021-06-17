@@ -1,0 +1,57 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+	<main class="main-text" style="">
+
+		<div>
+
+			<h1>Recent Posts</h1>
+
+			{% include 'blog/blog_snippet_list.html' %}
+
+			<div class="clear"></div>
+
+		</div>
+
+		<aside class="submenu" style="">
+
+			<h3 style="" class="heading">About Oli's Outlook</h3>
+
+			<div class="content-container">
+
+				<div class="image-container" style="">
+					<img src="/media/uploads/2021/02/27/07092019.jpg" />
+				</div>
+
+				<div class="text-container">
+					<p>Welcome to Oli's Outlook, a blogging website that I created in my spare time over lockdown and procrastinating instead of doing my disseratertion...</p>
+
+					<p>I have a background in Physics and will explore a range of topics that interest me from science and technology to films and language. I hope you will join me on this journey</p>
+				</div>
+
+			</div>
+
+			<div class="clear"></div>
+
+		</aside>
+
+		<aside class="submenu" style="">
+			
+			<h3 style="" class="heading">Newsletter</h3>
+
+			<div class="content-container">
+				Subscribe
+				<input type="text" name="">
+				<p>
+					Stay up to date on new posts. Read our privacy policy here. 
+				</p>
+			</div>
+
+			<div class="clear"></div>
+		</aside>
+
+		
+	</main>
+
+
+{% endblock %}

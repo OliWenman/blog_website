@@ -1,0 +1,108 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+
+	<div class="main-text">
+			
+		<div style="">
+
+			<h1>Explore Posts</h1>
+			
+			{% include 'blog/blog_snippet_list.html' %}
+
+			<div class="page_number_container">
+
+				{% if current_page != 1 %}
+
+					<a  href="{% url 'blog:entry_list_page' current_page=prev_page %}"class="box page_prev" style="">
+						<div class=" page_number" >Prev</div>
+					</a>
+
+				{% else %}
+
+					<a  href="{% url 'blog:entry_list_page' current_page=prev_page %}"class="box page_prev" style="visibility: hidden;">
+						<div class="page_number" >Prev</div>
+					</a>
+
+				{% endif %}
+
+		
+				{% for page in pages %}
+
+					{% if page == "..." %}
+						<a class="box" href="#">	
+							<div class="page_number" >
+
+								{% if page == current_page %}
+									<b>{{page}}</b>
+								{% else %}
+									{{page}}
+								{% endif %}
+
+							</div>
+						</a>
+
+					{% else %}
+						<a class="box" href="{% url 'blog:entry_list_page' current_page=page %}">	
+							<div class="page_number" >
+
+								{% if page == current_page %}
+									<b>{{page}}</b>
+								{% else %}
+									{{page}}
+								{% endif %}
+
+							</div>
+						</a>
+					{% endif %}
+
+				{% endfor %}
+
+				
+				{% if current_page != n_pages %}
+
+					<a href="{% url 'blog:entry_list_page' current_page=next_page %}" class="box page_next" style="">
+						<div class="page_number" >Next</div>
+					</a>
+
+				{% else %}
+
+					<a href="{% url 'blog:entry_list_page' current_page=next_page %}" class="box page_next" style="visibility: hidden;">
+						<div class=" page_number" >Next</div>
+					</a>
+
+				{% endif %}
+
+			</div>
+
+		</div>
+	
+		<aside class="submenu" style="">
+
+			<div class="heading_container">
+				<h3 style="" class="heading">About Oli's Outlook</h3>
+			</div>
+
+			<div class="image-container" style="">
+				<img src="/media/uploads/2021/02/27/07092019.jpg" />
+			</div>
+
+			<div class="text-container">
+				<p>Welcome to Oli's Outlook, a blogging website that I created in my spare time over lockdown and procrastinating instead of doing my disseratertion...</p>
+
+				<p>I have a background in Physics and will explore a range of topics that interest me from science and technology to films and language. I hope you will join me on this journey</p>
+			</div>
+
+		</aside>
+
+	</div>
+
+	<script type="text/javascript">
+		
+	</script>
+
+{% endblock %}
+
+

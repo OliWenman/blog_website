@@ -1,0 +1,82 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+
+	<main class="main-text">
+
+		<div style="width: 100%; height: 40px;"></div>
+
+		<div class="blog-post-container" style="">
+
+			<div class="blog-post">
+
+				<div style=" border-bottom: 1px solid #cccccc; margin-bottom: 45px; padding-bottom: 20px;">
+					<h1 style="margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; text-align: center; word-break: break-all;">{{entry.title}}</h1>
+
+					<ul style="white-space: nowrap; color: grey; padding-top: 0; margin-top: 0; font-size:75%; list-style: none; padding-left: 0; text-align: center;">
+						<li>{{entry.created_at|date:"SHORT_DATE_FORMAT"}}</li>
+						<li>
+							{% if entry.created_at|date:"SHORT_DATE_FORMAT" != entry.updated_at|date:"SHORT_DATE_FORMAT" %}
+								Updated: {{entry.updated_at|date:"SHORT_DATE_FORMAT"}}
+							{% endif %}
+						</li>
+					</ul>
+				</div>
+
+				{{entry.body|safe}}
+			</div>
+			
+
+			<div class="clear"></div>
+		</div>
+
+		<aside class="submenu">
+
+			<h3 style="" class="heading">About Oli's Outlook</h3>
+
+			<div class="content-container">
+
+				<div class="image-container" style="">
+					<img src="/media/uploads/2021/02/27/07092019.jpg" />
+				</div>
+
+				<div class="text-container">
+					<p>Welcome to Oli's Outlook, a blogging website that I created in my spare time over lockdown and procrastinating instead of doing my disseratertion...</p>
+
+					<p>I have a background in Physics and will explore a range of topics that interest me from science and technology to films and language. I hope you will join me on this journey</p>
+				</div>
+
+			</div>
+
+		</aside>
+
+		<aside class="submenu" style="">
+			
+			<h3 style="" class="heading">Newsletter</h3>
+
+			<div class="content-container">
+				Subscribe
+				<input type="text" name="">
+				<p>
+					Stay up to date on new posts. Read our privacy policy here. 
+				</p>
+			</div>
+
+		</aside>
+
+		<div class="clear"></div>
+
+		<div>
+			<h1>Check out these other posts</h1>
+
+			{% include 'blog/blog_snippet_list.html' %}
+
+		</div>
+
+		<div class="clear"></div>
+
+	</main>
+
+{% endblock %}
